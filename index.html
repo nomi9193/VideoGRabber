@@ -1,1 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VideoGrabber - Video Downloader</title>
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;
+ font-family:Arial,sans-serif;
+ background:#0b1020;
+ color:white;
+}
+header{
+ padding:22px;
+ text-align:center;
+ background:#111a30;
+ border-bottom:1px solid #26324d;
+}
+.logo{font-size:27px;font-weight:bold;color:#55e6a5}
+.hero{text-align:center;padding:65px 20px 35px}
+.hero h1{font-size:40px;margin-bottom:12px}
+.hero p{color:#aab5ca;font-size:17px}
+.container{
+ max-width:650px;
+ margin:20px auto;
+ padding:30px;
+ background:#17223b;
+ border-radius:18px;
+}
+.platforms{
+ display:flex;gap:12px;justify-content:center;
+ flex-wrap:wrap;margin-bottom:25px;
+}
+.platform{
+ background:#263653;
+ padding:13px 19px;
+ border-radius:10px;
+ font-weight:bold;
+}
+input{
+ width:100%;padding:17px;
+ border:1px solid #435271;
+ border-radius:10px;
+ background:#0d172c;
+ color:white;font-size:16px;
+}
+button{
+ width:100%;padding:16px;
+ margin-top:15px;
+ border:0;border-radius:10px;
+ background:#38d99b;
+ color:#071b17;
+ font-size:17px;font-weight:bold;
+ cursor:pointer;
+}
+#message{
+ margin-top:18px;
+ color:#c5d1e8;
+ line-height:1.6;
+ text-align:center;
+}
+.info{
+ max-width:650px;margin:30px auto;
+ padding:20px;text-align:center;
+ color:#aab5ca;line-height:1.7;
+}
+footer{
+ text-align:center;padding:25px;
+ color:#8794aa;
+}
+@media(max-width:600px){
+ .hero h1{font-size:30px}
+ .container{margin:15px;padding:20px}
+}
+</style>
+</head>
+<body>
 
+<header>
+ <div class="logo">▶ VideoGrabber</div>
+</header>
+
+<section class="hero">
+ <h1>VideoGrabber</h1>
+ <p>Your Video Link Hub</p>
+ <p>Paste your video link below</p>
+</section>
+
+<div class="container">
+ <div class="platforms">
+  <div class="platform">TikTok</div>
+  <div class="platform">YouTube</div>
+  <div class="platform">Instagram</div>
+ </div>
+
+ <input id="videoLink" type="url"
+ placeholder="Paste video URL here">
+
+ <button onclick="checkLink()">Check Video Link</button>
+
+ <div id="message">
+  Paste a supported video link to get started.
+ </div>
+</div>
+
+<div class="info">
+ <h2>About VideoGrabber</h2>
+ <p>VideoGrabber helps you identify video links
+ from supported platforms.</p>
+ <p>Only download content you own or have
+ permission to download, using official methods.</p>
+</div>
+
+<footer>
+ © 2026 VideoGrabber. All rights reserved.
+</footer>
+
+<script>
+function checkLink(){
+ const link=document.getElementById("videoLink").value.trim();
+ const msg=document.getElementById("message");
+
+ if(!link){
+  msg.innerText="Please paste a video link first.";
+  return;
+ }
+
+ try{
+  const url=new URL(link);
+  const host=url.hostname.toLowerCase();
+
+  if(host.includes("tiktok.com") ||
+     host.includes("youtube.com") ||
+     host.includes("youtu.be") ||
+     host.includes("instagram.com")){
+    msg.innerText="Link recognized! Use the platform's official download or sharing options. Automatic downloading is not connected yet.";
+  }else{
+    msg.innerText="Please enter a TikTok, YouTube or Instagram link.";
+  }
+ }catch(e){
+  msg.innerText="Please enter a valid URL.";
+ }
+}
+</script>
+
+</body>
+</html>
